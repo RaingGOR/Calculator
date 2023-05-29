@@ -17,7 +17,7 @@ public class Logic {
         return counter;
     }
 
-    public int doOperation(String operation, int firstNum, int secondNum) {
+    public double doOperation(String operation, double firstNum, double secondNum) {
         switch (operation) {
             case "-" -> {
                 return firstNum - secondNum;
@@ -26,7 +26,7 @@ public class Logic {
                 return firstNum + secondNum;
             }
             case ":" -> {
-                    return firstNum / secondNum;
+                return (double) firstNum / secondNum + firstNum % secondNum;
             }
             case "*" -> {
                 return firstNum * secondNum;

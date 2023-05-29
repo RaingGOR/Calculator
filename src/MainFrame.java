@@ -14,8 +14,8 @@ public class MainFrame extends JFrame {
     private JPanel contentPane;
     public String fullTextString = " "; //for history
     public String textString = ""; //for textField
-    public int firstNumber, secondNumber;
-    public int equals;
+    public double firstNumber, secondNumber;
+    public double equals;
     public static String bufferText = "";  //for testString
     public static String setOperation = ""; //for logic
 
@@ -148,8 +148,8 @@ public class MainFrame extends JFrame {
                 if (setOperation.equals(":") && secondNumber == 0) {
                     textString += " ??? ERROR!! DIVISION BY 0";
                 } else {
-                    equals = logic.doOperation(setOperation, firstNumber, secondNumber);
-                    textString += " = " + Integer.toString(equals);
+                    equals = logic.doOperation(setOperation, (double) firstNumber, (double) secondNumber);
+                    textString += " = " +  equals;
                 }
                 textField.setText(textString);
                 fullTextString += textString + "\n";
