@@ -12,12 +12,12 @@ import static java.lang.Integer.parseInt;
 
 public class MainFrame extends JFrame {
     private JPanel contentPane;
-    public String fullTextString = "";
-    public String textString = "";
+    public String fullTextString = " "; //for history
+    public String textString = ""; //for textField
     public int firstNumber, secondNumber;
     public int equals;
-    public static String bufferText = "";
-    public static String setOperation = "";
+    public static String bufferText = "";  //for testString
+    public static String setOperation = ""; //for logic
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
         forNumbbers.add(secondLine);
         forNumbbers.add(thirdLine);
         forNumbbers.add(fourLine);
-        forNumbbers.setBounds(10, 100, 265, 140);
+        forNumbbers.setBounds(10, 100, 265, 240);
         contentPane.add(forNumbbers, BorderLayout.CENTER);
 
         //actions number
@@ -99,15 +99,6 @@ public class MainFrame extends JFrame {
                 }
             });
         }
-//        List<JButton> operations = Arrays.asList(minucButton, multiplicationButton, plusButton, divisionButton);
-//        for (JButton operation : operations) {
-//            operation.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    bufferText += " " + operation.getText() + " ";
-//                }
-//            });
-//        }
         divisionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,10 +145,14 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 secondNumber = parseInt(bufferText);
-                equals = logic.doOperation(setOperation, firstNumber, secondNumber);
-                textString += " = " + Integer.toString(equals);
+                if (setOperation.equals(":") && secondNumber == 0) {
+                    textString += " ??? ERROR!! DIVISION BY 0";
+                } else {
+                    equals = logic.doOperation(setOperation, firstNumber, secondNumber);
+                    textString += " = " + Integer.toString(equals);
+                }
                 textField.setText(textString);
-                fullTextString += textField;
+                fullTextString += textString + "\n";
                 textArea.setText(fullTextString);
                 textString = "";
                 firstNumber = 0;
@@ -165,6 +160,8 @@ public class MainFrame extends JFrame {
                 bufferText = "";
             }
         });
+        forNumbbers.add(textArea, BorderLayout.SOUTH);
+
     } //numbers panel
 
     public JTextField textField = new JTextField();
@@ -192,12 +189,18 @@ public class MainFrame extends JFrame {
         //history
         textArea.setBorder(new TitledBorder("HISTORY"));
         textArea.setVisible(true);
-        contentPane.add(textArea, BorderLayout.SOUTH);
+        textArea.setSize(255, 100);
 
-        //add bg (need edits)
+        //add bg (need edits) NEED HELP AAAAAAAAAAAAAAAAAAAa
 //        JLabel backGrounf = new JLabel("");
-//        backGrounf.setIcon(new ImageIcon(("resuorse/bgIcon.gif")));
-//        backGrounf.setBounds(0, 0, 623, 494);
+
+//        ImageIcon imageIcon = new ImageIcon("resuorse/bgIcon.gif"); // load the image to a imageIcon
+//        Image image = imageIcon.getImage(); // transform it
+//        Image newimg = image.getScaledInstance(300, 400, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+//        imageIcon = new ImageIcon(newimg);
+//
+//        backGrounf.setIcon(imageIcon);
+//        backGrounf.setBounds(0, 0, 300, 400);
 //        contentPane.add(backGrounf);
 //        contentPane.setComponentZOrder(backGrounf, 0);
     }

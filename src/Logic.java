@@ -26,7 +26,7 @@ public class Logic {
                 return firstNum + secondNum;
             }
             case ":" -> {
-                return firstNum / secondNum;
+                    return firstNum / secondNum;
             }
             case "*" -> {
                 return firstNum * secondNum;
